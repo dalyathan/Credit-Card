@@ -1,16 +1,8 @@
-# credit_card
+# Credit Card
 
-A new Flutter project.
+A flutter implementation of [MeCC- Mobile App Design](https://dribbble.com/shots/17445037-MeCC-Mobile-App-Design) by [Andre Rio](https://dribbble.com/andrerio669) for [Peddium](https://dribbble.com/peddium)
+![Design](https://cdn.dribbble.com/users/7992728/screenshots/17445037/media/a6574fac170775ea3e7acff16107a247.png)
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+6.5 inches and 720X1600 pixles|  4 inches and 320X534 pixles
+:----------------------------:|:---------------------------:
+![](larger_screen.gif)        |  ![](smaller_screen.gif) 
