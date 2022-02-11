@@ -1,21 +1,38 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class PathVectorUtil {
   final Size frame;
 
   PathVectorUtil(this.frame);
 
-  Path rotatePath(Path oldPath, double counterClockwiseInRadians) {
-    Path cartesianPath = toCartesianPath(oldPath);
+  Path rotateZ(Path oldPath, double counterClockwiseInRadians) {
+    Path cartesianPath = toCartesian(oldPath);
     Path rotatedCartesianPath = cartesianPath
         .transform(Matrix4.rotationZ(counterClockwiseInRadians).storage);
-    Path rotatedDartianPath = toDartianPath(rotatedCartesianPath);
+    Path rotatedDartianPath = toDartian(rotatedCartesianPath);
     return rotatedDartianPath;
   }
 
-  Path toCartesianPath(Path dartianPath) =>
+  Path toCartesian(Path dartianPath) =>
       dartianPath.shift(Offset(-frame.width * 0.5, -frame.height * 0.5));
 
-  Path toDartianPath(Path cartesianPath) =>
+  Path toDartian(Path cartesianPath) =>
       cartesianPath.shift(Offset(frame.width * 0.5, frame.height * 0.5));
+
+  Path reflectXAxis(Path dartianPath) {
+    return rotateZ(dartianPath, -pi);
+  }
+
+  Path reflectYAxis(Path dartianPath) {
+    return rotateX(dartianPath, -pi);
+  }
+
+  Path rotateX(Path oldPath, double counterClockwiseInRadians) {
+    Path cartesianPath = toCartesian(oldPath);
+    Path rotatedCartesianPath = cartesianPath
+        .transform(Matrix4.rotationY(counterClockwiseInRadians).storage);
+    Path rotatedDartianPath = toDartian(rotatedCartesianPath);
+    return rotatedDartianPath;
+  }
 }

@@ -18,7 +18,7 @@ class CardContainer extends StatelessWidget {
             top: height * 0.175,
             left: width * 0.15,
             child: SimcardContainer(
-              size: width * 0.1,
+              size: width * 0.175,
             ))
       ],
     );
