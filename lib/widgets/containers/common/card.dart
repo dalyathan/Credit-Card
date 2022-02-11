@@ -2,6 +2,7 @@ import 'package:credit_card/widgets/containers/common/card_background.dart';
 import 'package:flutter/material.dart';
 
 import 'simcard.dart';
+import 'dart:math';
 
 class CardContainer extends StatelessWidget {
   final double width;

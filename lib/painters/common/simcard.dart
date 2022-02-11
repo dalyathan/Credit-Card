@@ -20,10 +20,10 @@ class SimcardPainter extends CustomPainter {
     // TODO: implement paint
     KJLengthRatio = 0.225;
     JIheightRatio = 0.075;
-    gapRatio = 0.1;
-    cornerCutRatio = 0.05;
-    LALengthRatio = 0.175;
-    IHLengthRatio = 1 - (2 * cornerCutRatio + 2 * KJLengthRatio + 2 * gapRatio);
+    gapRatio = 0.05;
+    cornerCutRatio = 0.025;
+    LALengthRatio = 0.215;
+    IHLengthRatio = 1 - 2 * (cornerCutRatio + KJLengthRatio + gapRatio);
     PQLengthRatio = 1 - 2 * (LALengthRatio + gapRatio + 3 * cornerCutRatio);
     this.canvas = canvas;
     this.size = size;
@@ -35,6 +35,7 @@ class SimcardPainter extends CustomPainter {
 
     paintUpperAndBottomPart();
     paintLeftAndRightPart();
+    paintMiddlePiece();
   }
 
   paintUpperAndBottomPart() {
@@ -56,21 +57,45 @@ class SimcardPainter extends CustomPainter {
 
     Path path = Path()..addPolygon([A, B, C, D, E, F, G, H, I, J, K, L], true);
     canvas.drawPath(path, brush);
-    canvas.drawPath(pathVectorUtil.reflectXAxis(path), brush);
+    canvas.drawShadow(path.shift(Offset(-size.width * 0.125, 0)),
+        const Color.fromRGBO(37, 45, 75, 1), size.width * 0.05, true);
+    Path lowerPart = pathVectorUtil.reflectXAxis(path);
+    canvas.drawPath(lowerPart, brush);
+    canvas.drawShadow(lowerPart.shift(Offset(-size.width * 0.125, 0)),
+        const Color.fromRGBO(37, 45, 75, 1), size.width * 0.05, true);
   }
 
   paintLeftAndRightPart() {
     Offset M = Offset(
         0, size.height * (3 * cornerCutRatio + gapRatio + LALengthRatio));
     Offset N = Offset(
-        size.width * cornerCutRatio, M.dy + size.height * cornerCutRatio);
+        size.width * cornerCutRatio, M.dy - size.height * cornerCutRatio);
     Offset O = Offset(N.dx + size.width * KJLengthRatio, N.dy);
     Offset P = Offset(O.dx + size.width * cornerCutRatio,
         O.dy + size.height * cornerCutRatio);
     Offset Q = Offset(P.dx, P.dy + size.height * PQLengthRatio);
-    Path path = Path()..addPolygon([M, N, O, P, Q], true);
+    Offset R = Offset(Q.dx - size.width * cornerCutRatio,
+        Q.dy + size.height * cornerCutRatio);
+    Offset S = Offset(R.dx - size.width * KJLengthRatio, R.dy);
+    Offset T = Offset(M.dx, S.dy - size.height * cornerCutRatio);
+    Path path = Path()..addPolygon([M, N, O, P, Q, R, S, T], true);
     canvas.drawPath(path, brush);
+    canvas.drawShadow(path.shift(Offset(-size.width * 0.125, 0)),
+        const Color.fromRGBO(37, 45, 75, 1), size.width * 0.05, true);
     canvas.drawPath(pathVectorUtil.reflectYAxis(path), brush);
+  }
+
+  paintMiddlePiece() {
+    Offset U = Offset(
+        size.width * (2 * cornerCutRatio + KJLengthRatio + gapRatio),
+        size.height * (cornerCutRatio + LALengthRatio));
+    Offset V = Offset(
+        size.width * (1 - (2 * cornerCutRatio + KJLengthRatio + gapRatio)),
+        U.dy);
+    Offset W =
+        Offset(V.dx, size.height * (1 - (cornerCutRatio + LALengthRatio)));
+    Offset X = Offset(U.dx, W.dy);
+    canvas.drawPath(Path()..addPolygon([U, V, W, X], true), brush);
   }
 
   @override
