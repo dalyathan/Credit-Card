@@ -20,14 +20,6 @@ class PathVectorUtil {
   Path toDartian(Path cartesianPath) =>
       cartesianPath.shift(Offset(frame.width * 0.5, frame.height * 0.5));
 
-  Path reflectXAxis(Path dartianPath) {
-    return rotateZ(dartianPath, -pi);
-  }
-
-  Path reflectYAxis(Path dartianPath) {
-    return rotateX(dartianPath, -pi);
-  }
-
   Path rotateX(Path oldPath, double counterClockwiseInRadians) {
     Path cartesianPath = toCartesian(oldPath);
     Path rotatedCartesianPath = cartesianPath

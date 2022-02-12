@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:credit_card/theme.dart';
 import 'package:flutter/material.dart';
 
+import '../../util/canvas_helper.dart';
 import '../../util/math/path.dart';
 
 class SimcardPainter extends CustomPainter {
@@ -18,7 +21,7 @@ class SimcardPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // TODO: implement paint
-    KJLengthRatio = 0.225;
+    KJLengthRatio = 0.235;
     JIheightRatio = 0.075;
     gapRatio = 0.05;
     cornerCutRatio = 0.025;
@@ -33,13 +36,20 @@ class SimcardPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
     pathVectorUtil = PathVectorUtil(size);
 
-    paintUpperAndBottomPart();
-    paintLeftAndRightPart();
-    paintMiddlePiece();
+    List<Path> upperAndBottomPaths = getUpperAndBottomPath();
+    List<Path> leftAndRightPaths = getLeftAndRightPath();
+    Path middlePath = getMiddlePath();
+    CanvasHelper.drawObjectWithShadow(
+        [...upperAndBottomPaths, ...leftAndRightPaths, middlePath],
+        canvas,
+        size,
+        brush);
+// drawActual([...upperAndBottomPaths, ...leftAndRightPaths, middlePath]);
   }
 
-  paintUpperAndBottomPart() {
+  List<Path> getUpperAndBottomPath() {
     Offset A = Offset(0, size.height * cornerCutRatio);
+
     Offset B = Offset(size.width * cornerCutRatio, 0);
     Offset C = Offset(size.width * (1 - cornerCutRatio), B.dy);
     Offset D = Offset(size.width, A.dy);
@@ -55,17 +65,13 @@ class SimcardPainter extends CustomPainter {
     Offset L = Offset(
         K.dx - size.width * cornerCutRatio, A.dy + size.height * LALengthRatio);
 
-    Path path = Path()..addPolygon([A, B, C, D, E, F, G, H, I, J, K, L], true);
-    canvas.drawPath(path, brush);
-    canvas.drawShadow(path.shift(Offset(-size.width * 0.125, 0)),
-        const Color.fromRGBO(37, 45, 75, 1), size.width * 0.05, true);
-    Path lowerPart = pathVectorUtil.reflectXAxis(path);
-    canvas.drawPath(lowerPart, brush);
-    canvas.drawShadow(lowerPart.shift(Offset(-size.width * 0.125, 0)),
-        const Color.fromRGBO(37, 45, 75, 1), size.width * 0.05, true);
+    Path upperPart = Path()
+      ..addPolygon([A, B, C, D, E, F, G, H, I, J, K, L], true);
+    Path lowerPart = pathVectorUtil.rotateZ(upperPart, -pi);
+    return [lowerPart, upperPart];
   }
 
-  paintLeftAndRightPart() {
+  List<Path> getLeftAndRightPath() {
     Offset M = Offset(
         0, size.height * (3 * cornerCutRatio + gapRatio + LALengthRatio));
     Offset N = Offset(
@@ -78,14 +84,12 @@ class SimcardPainter extends CustomPainter {
         Q.dy + size.height * cornerCutRatio);
     Offset S = Offset(R.dx - size.width * KJLengthRatio, R.dy);
     Offset T = Offset(M.dx, S.dy - size.height * cornerCutRatio);
-    Path path = Path()..addPolygon([M, N, O, P, Q, R, S, T], true);
-    canvas.drawPath(path, brush);
-    canvas.drawShadow(path.shift(Offset(-size.width * 0.125, 0)),
-        const Color.fromRGBO(37, 45, 75, 1), size.width * 0.05, true);
-    canvas.drawPath(pathVectorUtil.reflectYAxis(path), brush);
+    Path leftPart = Path()..addPolygon([M, N, O, P, Q, R, S, T], true);
+    Path rightPart = pathVectorUtil.rotateX(leftPart, -pi);
+    return [leftPart, rightPart];
   }
 
-  paintMiddlePiece() {
+  Path getMiddlePath() {
     Offset U = Offset(
         size.width * (2 * cornerCutRatio + KJLengthRatio + gapRatio),
         size.height * (cornerCutRatio + LALengthRatio));
@@ -95,9 +99,9 @@ class SimcardPainter extends CustomPainter {
     Offset W =
         Offset(V.dx, size.height * (1 - (cornerCutRatio + LALengthRatio)));
     Offset X = Offset(U.dx, W.dy);
-    canvas.drawPath(Path()..addPolygon([U, V, W, X], true), brush);
+    return Path()..addPolygon([U, V, W, X], true);
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
