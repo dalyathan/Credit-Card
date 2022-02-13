@@ -1,7 +1,6 @@
 import 'package:credit_card/theme.dart';
+import 'package:credit_card/util/canvas_helper.dart';
 import 'package:flutter/material.dart';
-
-import '../../util/canvas_helper/shadows.dart';
 
 class DarkBlueSquaresPainter extends CustomPainter {
   @override

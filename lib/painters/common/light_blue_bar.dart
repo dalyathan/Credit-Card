@@ -1,5 +1,6 @@
+import 'package:credit_card/util/canvas_helper.dart';
+
 import '/theme.dart';
-import '/util/canvas_helper/shadows.dart';
 import 'package:flutter/material.dart';
 
 class LightBlueBarPainter extends CustomPainter {

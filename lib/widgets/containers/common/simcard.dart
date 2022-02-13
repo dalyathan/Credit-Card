@@ -8,6 +8,8 @@ class SimcardContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Transform myTransformer =
+        context.findAncestorWidgetOfExactType<Transform>()!;
     return CustomPaint(
       painter: SimcardPainter(),
       size: Size.square(size),

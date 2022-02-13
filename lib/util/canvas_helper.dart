@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
+
 class CanvasHelper {
   static drawObjectWithShadow(
       List<Path> object, Canvas canvas, Size size, Paint brush) {
@@ -21,9 +23,24 @@ class CanvasHelper {
         factor += factorIncerememnt;
       }
     }
-
+    double maxDepth = 10;
+    double startZIndex = 0;
+    double zIndexIncrement = 1;
+    late Matrix4 transformer;
+    Color currentColor = brush.color;
     for (Path objectPath in object) {
-      canvas.drawPath(objectPath, brush);
+      double layerZIndex = startZIndex;
+      while (layerZIndex <= maxDepth) {
+        transformer =
+            Matrix4.translationValues(layerZIndex, -layerZIndex, layerZIndex);
+        Color darkenedColor = Color.fromRGBO(currentColor.red + 20,
+            currentColor.green + 120, currentColor.blue + 120, 1);
+        canvas.drawPath(objectPath.transform(transformer.storage),
+            brush..color = darkenedColor);
+        layerZIndex += zIndexIncrement;
+      }
+      canvas.drawPath(objectPath.transform(transformer.storage),
+          brush..color = currentColor);
     }
   }
 
