@@ -1,9 +1,13 @@
 import 'package:credit_card/util/canvas_helper.dart';
+import 'package:vector_math/vector_math_64.dart';
 
 import '/theme.dart';
 import 'package:flutter/material.dart';
 
 class LightBlueBarPainter extends CustomPainter {
+  final Vector3 objectDepthAxis;
+
+  LightBlueBarPainter(this.objectDepthAxis);
   @override
   void paint(Canvas canvas, Size size) {
     Paint brush = Paint()
@@ -16,7 +20,8 @@ class LightBlueBarPainter extends CustomPainter {
               width: size.width,
               height: size.height),
           Radius.circular(size.height * 0.15)));
-    CanvasHelper.drawObjectWithShadow([barPath], canvas, size, brush);
+    CanvasHelper.drawObjectWithShadow(
+        [barPath], canvas, size, brush, objectDepthAxis);
   }
 
   @override

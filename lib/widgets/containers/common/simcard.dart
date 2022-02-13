@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'dart:ui';
 
 import '../../../painters/common/simcard.dart';
+import 'package:vector_math/vector_math_64.dart';
 
 class SimcardContainer extends StatelessWidget {
   final double size;
-  const SimcardContainer({Key? key, required this.size}) : super(key: key);
+  final Vector3 objectdepthAxis;
+  const SimcardContainer(
+      {Key? key, required this.size, required this.objectdepthAxis})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Transform myTransformer =
-        context.findAncestorWidgetOfExactType<Transform>()!;
     return CustomPaint(
-      painter: SimcardPainter(),
+      painter: SimcardPainter(objectdepthAxis),
       size: Size.square(size),
     );
   }

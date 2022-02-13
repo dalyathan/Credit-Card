@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:vector_math/vector_math_64.dart';
 
-import '../../../theme.dart';
+import '../../../painters/common/card_background.dart';
 
 class CardBackground extends StatelessWidget {
+  final Vector3 objectDepthAxis;
   final double width;
   final double height;
-  const CardBackground({Key? key, required this.width, required this.height})
+  const CardBackground(
+      {Key? key,
+      required this.width,
+      required this.height,
+      required this.objectDepthAxis})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double borderRadiusRatio = 0.1;
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        borderRadius:
-            BorderRadius.all(Radius.circular(height * borderRadiusRatio)),
-        gradient: const LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          colors: <Color>[Color.fromRGBO(79, 112, 141, 1), MyTheme.darkBlue],
-        ),
-      ),
+    return CustomPaint(
+      size: Size(width, height),
+      painter: CardBackgroundPainter(objectDepthAxis),
     );
   }
 }
