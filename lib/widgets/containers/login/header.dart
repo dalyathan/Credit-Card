@@ -21,33 +21,51 @@ class LoginFormHead extends StatelessWidget {
             Row(
               children: [
                 const Spacer(
-                  flex: 3,
+                  flex: 6,
                 ),
-                Text(
-                  "Your",
-                  style: GoogleFonts.sora(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
+                SizedBox(
+                  height: height * 0.5,
+                  child: FittedBox(
+                    fit: BoxFit.fitHeight,
+                    child: Text(
+                      "Your",
+                      style: GoogleFonts.sora(
+                          color: Colors.black,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
                 const Spacer(
                   flex: 1,
                 ),
-                Text(
-                  "Credit Card",
-                  style: GoogleFonts.sora(
-                      color: MyTheme.lightBlue,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
+                SizedBox(
+                  height: height * 0.5,
+                  child: FittedBox(
+                    fit: BoxFit.fitHeight,
+                    child: Text(
+                      "Credit Card",
+                      style: GoogleFonts.sora(
+                          color: MyTheme.lightBlue,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
                 const Spacer(
-                  flex: 3,
+                  flex: 6,
                 ),
               ],
             ),
-            Text(
-              "Enter your username and password",
-              style: GoogleFonts.sora(color: Colors.black, fontSize: 15),
+            SizedBox(
+              height: height * 0.4,
+              child: FittedBox(
+                fit: BoxFit.fitHeight,
+                child: Text(
+                  "Enter your username and password",
+                  style: GoogleFonts.sora(color: Colors.black, fontSize: 15),
+                ),
+              ),
             )
           ],
         ),

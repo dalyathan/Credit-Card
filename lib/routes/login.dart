@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/containers/login/form.dart';
 import '../widgets/containers/login/header.dart';
+import '../widgets/containers/login/no_account.dart';
 
 class LoginRoute extends StatelessWidget {
   const LoginRoute({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class LoginRoute extends StatelessWidget {
     double creditCard3dHeightRatio = 0.225;
     double titleheightRatio = 0.075;
     double largeSpacerRatio = 0.125;
-    double formHeightRatio = 0.25;
+    double formHeightRatio = 0.375;
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -22,7 +23,7 @@ class LoginRoute extends StatelessWidget {
             CreditCard3DContainer(
                 height: size.height * creditCard3dHeightRatio),
             SizedBox(
-              height: size.height * largeSpacerRatio,
+              height: size.height * largeSpacerRatio * 1.25,
             ),
             Center(
               child: LoginFormHead(
@@ -36,7 +37,15 @@ class LoginRoute extends StatelessWidget {
               child: LoginFormContainer(
                 height: size.height * formHeightRatio,
               ),
-            )
+            ),
+            SizedBox(
+              height: size.height * largeSpacerRatio * 0.25,
+            ),
+            Center(
+              child: NoAccountContainer(
+                height: size.height * 0.2,
+              ),
+            ),
           ],
         ),
       )),
