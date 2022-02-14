@@ -1,8 +1,12 @@
 import 'dart:ui';
+import 'package:vector_math/vector_math_64.dart';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart' as material;
 
 class CanvasHelper {
-  static drawObjectWithShadow(
-      List<Path> object, Canvas canvas, Size size, Paint brush) {
+  static drawObjectWithShadow(List<Path> object, Canvas canvas, Size size,
+      Paint brush, Vector3 objectDepthAxis) {
     double factorIncerememnt = 0.05;
     double shadowElevation = size.width * 0.025;
     double aspectRatio = size.width / size.height;
@@ -21,11 +25,36 @@ class CanvasHelper {
         factor += factorIncerememnt;
       }
     }
-
-    for (Path objectPath in object) {
-      canvas.drawPath(objectPath, brush);
-    }
+    makeAppear3D(object, canvas, size, brush, objectDepthAxis);
   }
 
-  draw3D(Canvas canvas, Size size, Paint brush, List<Path> object) {}
+  static makeAppear3D(List<Path> object, Canvas canvas, Size size, Paint brush,
+      Vector3 objectDepthAxis,
+      {bool isShader = false}) {
+    double maxDepth = 20;
+    double startZIndex = 0;
+    double zIndexIncrement = 1;
+    late Matrix4 transformer;
+    Color currentColor = brush.color;
+    late Color darkenedColor;
+    if (isShader) {
+      darkenedColor = const Color.fromRGBO(29, 53, 78, 1);
+    } else {
+      darkenedColor = Color.alphaBlend(material.Colors.black87, currentColor);
+    }
+    for (Path objectPath in object) {
+      double layerZIndex = startZIndex;
+      while (layerZIndex <= maxDepth) {
+        transformer = Matrix4.translationValues(objectDepthAxis.x * layerZIndex,
+            objectDepthAxis.y * layerZIndex, objectDepthAxis.z * layerZIndex);
+        canvas.drawPath(objectPath.transform(transformer.storage),
+            Paint()..color = darkenedColor);
+        layerZIndex += zIndexIncrement;
+      }
+    }
+    for (Path objectPath in object) {
+      canvas.drawPath(objectPath.transform(transformer.storage),
+          brush..color = currentColor);
+    }
+  }
 }

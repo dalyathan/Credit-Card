@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 
 import '../../util/canvas_helper.dart';
 import '../../util/math/path.dart';
+import 'package:vector_math/vector_math_64.dart';
 
 class SimcardPainter extends CustomPainter {
+  final Vector3 objectDepthAxis;
   late Canvas canvas;
   late Paint brush;
   late Size size;
@@ -18,6 +20,8 @@ class SimcardPainter extends CustomPainter {
   late double IHLengthRatio;
   late double PQLengthRatio;
   late PathVectorUtil pathVectorUtil;
+
+  SimcardPainter(this.objectDepthAxis);
   @override
   void paint(Canvas canvas, Size size) {
     // TODO: implement paint
@@ -43,7 +47,8 @@ class SimcardPainter extends CustomPainter {
         [...upperAndBottomPaths, ...leftAndRightPaths, middlePath],
         canvas,
         size,
-        brush);
+        brush,
+        objectDepthAxis);
 // drawActual([...upperAndBottomPaths, ...leftAndRightPaths, middlePath]);
   }
 

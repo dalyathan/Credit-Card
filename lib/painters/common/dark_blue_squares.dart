@@ -1,9 +1,14 @@
-import 'package:credit_card/theme.dart';
+import 'package:credit_card/util/canvas_helper.dart';
 import 'package:flutter/material.dart';
 
 import '../../util/canvas_helper.dart';
+import 'package:vector_math/vector_math_64.dart';
 
 class DarkBlueSquaresPainter extends CustomPainter {
+  final Vector3 objectDepthAxis;
+
+  DarkBlueSquaresPainter(this.objectDepthAxis);
+
   @override
   void paint(Canvas canvas, Size size) {
     Paint brush = Paint()
@@ -22,7 +27,8 @@ class DarkBlueSquaresPainter extends CustomPainter {
             Radius.circular(size.height * 0.15))));
       center = center.translate(squareWidth + gap, 0);
     }
-    CanvasHelper.drawObjectWithShadow(paths, canvas, size, brush);
+    CanvasHelper.drawObjectWithShadow(
+        paths, canvas, size, brush, objectDepthAxis);
   }
 
   @override

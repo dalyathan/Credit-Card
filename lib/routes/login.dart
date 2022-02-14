@@ -1,7 +1,8 @@
+import 'package:credit_card/widgets/containers/login/credit_card_3d.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/containers/common/card.dart';
-import 'dart:math';
+import '../widgets/containers/login/form.dart';
+import '../widgets/containers/login/header.dart';
 
 class LoginRoute extends StatelessWidget {
   const LoginRoute({Key? key}) : super(key: key);
@@ -9,22 +10,35 @@ class LoginRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    double cardWidthRatio = 0.7;
-    Matrix4 transformer = Matrix4.rotationX(-pi * 0.25);
-    transformer.rotateY(-pi * 0.05);
+    double creditCard3dHeightRatio = 0.225;
+    double titleheightRatio = 0.075;
+    double largeSpacerRatio = 0.125;
+    double formHeightRatio = 0.25;
     return Scaffold(
       body: SafeArea(
-          child: Column(
-        children: [
-          Center(
-            child: Transform(
-              transform: transformer,
-              child: CardContainer(
-                width: size.width * cardWidthRatio,
+          child: SingleChildScrollView(
+        child: Column(
+          children: [
+            CreditCard3DContainer(
+                height: size.height * creditCard3dHeightRatio),
+            SizedBox(
+              height: size.height * largeSpacerRatio,
+            ),
+            Center(
+              child: LoginFormHead(
+                height: size.height * titleheightRatio,
               ),
             ),
-          )
-        ],
+            SizedBox(
+              height: size.height * largeSpacerRatio * 0.5,
+            ),
+            Center(
+              child: LoginFormContainer(
+                height: size.height * formHeightRatio,
+              ),
+            )
+          ],
+        ),
       )),
     );
   }
