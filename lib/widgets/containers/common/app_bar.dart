@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'blue_gradient_background.dart';
+import 'custom_icon.dart';
 
 class CustomAppBar extends StatelessWidget {
   final double height;
@@ -17,8 +18,6 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double iconWidthRatio = 0.5;
-    double iconBorderRadiusRatio = 0.2;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -38,26 +37,9 @@ class CustomAppBar extends StatelessWidget {
             ),
           ),
         ),
-        Stack(
-          children: [
-            ClipRRect(
-              borderRadius:
-                  BorderRadius.circular(height * iconBorderRadiusRatio),
-              child: BlueGradientContainer(
-                height: height,
-                width: height,
-              ),
-            ),
-            Positioned(
-              left: height * (1 - iconWidthRatio) * 0.5,
-              top: height * (1 - iconWidthRatio) * 0.45,
-              child: Icon(
-                FontAwesomeIcons.solidCommentDots,
-                color: Colors.white,
-                size: height * iconWidthRatio,
-              ),
-            )
-          ],
+        CustomIcon(
+          iconData: FontAwesomeIcons.solidCommentDots,
+          size: height,
         )
       ],
     );

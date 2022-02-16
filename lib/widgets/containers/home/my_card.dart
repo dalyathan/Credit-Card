@@ -13,7 +13,7 @@ class MyCardContainer extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          height: height * 0.2,
+          height: height * 0.15,
           child: FittedBox(
               child: Text(
             "My Card",
