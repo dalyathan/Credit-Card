@@ -20,6 +20,7 @@ class CreditCard3DContainer extends StatelessWidget {
     transformer.rotateX(pi * 0.25);
     double creditCardIconTopOffset = 0.3;
     return Stack(
+      alignment: Alignment.topCenter,
       clipBehavior: Clip.none,
       children: [
         BlueGradientContainer(
@@ -27,13 +28,12 @@ class CreditCard3DContainer extends StatelessWidget {
           width: size.width,
         ),
         Positioned(
-          top: creditCardIconTopOffset * height,
-          left: size.width * (1 - cardWidthRatio) * 0.5,
+          top: height * creditCardIconTopOffset,
           child: Transform(
             transform: transformer,
             alignment: FractionalOffset.center,
             child: CardContainer(
-              width: size.width * cardWidthRatio,
+              height: height * 1.25,
             ),
           ),
         ),

@@ -14,12 +14,9 @@ class MasterCardContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     double aspectRatio = 2;
     double width = height * aspectRatio;
-    return Container(
-      color: Colors.black,
-      child: CustomPaint(
-        painter: MasterCardPainter(objectDepthAxis),
-        size: Size(width, height),
-      ),
+    return CustomPaint(
+      painter: MasterCardPainter(objectDepthAxis),
+      size: Size(width, height),
     );
   }
 }

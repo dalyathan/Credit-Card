@@ -8,13 +8,13 @@ import 'master_card.dart';
 import 'simcard.dart';
 
 class CardContainer extends StatelessWidget {
-  final double width;
-  const CardContainer({Key? key, required this.width}) : super(key: key);
+  final double height;
+  const CardContainer({Key? key, required this.height}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double aspectRatio = 1.4;
-    double height = width / aspectRatio;
+    double width = height * aspectRatio;
     double barheight = height * 0.075;
     Transform? myTransformer =
         context.findAncestorWidgetOfExactType<Transform>();
@@ -28,19 +28,19 @@ class CardContainer extends StatelessWidget {
         CardBackground(
             width: width, height: height, objectDepthAxis: objectDepthAxis),
         Positioned(
-            top: height * 0.175,
+            top: height * 0.2,
             left: width * 0.15,
             child: SimcardContainer(
                 size: height * 0.3, objectdepthAxis: objectDepthAxis)),
         Positioned(
-            top: height * 0.6,
+            top: height * 0.625,
             left: width * 0.1,
             child: DarkBlueSquaresContainer(
                 width: barheight * 5,
                 height: barheight,
                 objectDepthAxis: objectDepthAxis)),
         Positioned(
-            bottom: height * 0.15,
+            bottom: height * 0.2,
             left: width * 0.1,
             child: LightBlueBarContainer(
                 height: barheight,
@@ -50,7 +50,7 @@ class CardContainer extends StatelessWidget {
             bottom: height * 0.15,
             right: width * 0.075,
             child: MasterCardContainer(
-                height: height * 0.25, objectDepthAxis: objectDepthAxis))
+                height: height * 0.225, objectDepthAxis: objectDepthAxis))
       ],
     );
   }

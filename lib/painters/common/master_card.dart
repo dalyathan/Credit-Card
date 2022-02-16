@@ -10,24 +10,32 @@ class MasterCardPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     double overlapp = size.width * 0.1;
+    double gap = size.width * 0.035;
     double radius = size.height * 0.5;
-    double padding = (size.width - 4 * radius) * 0.5;
-    Offset center1 = Offset(padding + radius, radius);
-    Offset center2 = Offset(center1.dx + 2 * radius - overlapp, center1.dy);
-    Path leftCirclePath = Path()
-      ..addOval(Rect.fromCircle(center: center1, radius: radius));
-    Path rightCirclePath = Path()
-      ..addOval(Rect.fromCircle(center: center2, radius: radius));
-    Path combinedPath =
-        Path.combine(PathOperation.union, leftCirclePath, rightCirclePath);
-    CanvasHelper.makeAppear3D(
-        [combinedPath],
-        canvas,
-        size,
-        Paint()
-          ..color = MyTheme.lightBlue
-          ..style = PaintingStyle.fill,
-        objectDepthAxis);
+    double padding = (size.width - 4 * radius + overlapp) * 0.5;
+    Offset leftOverlappingOvalCenter = Offset(padding + radius, radius);
+    Offset rightOverlappingOvalCenter = Offset(
+        leftOverlappingOvalCenter.dx + 2 * radius - overlapp,
+        leftOverlappingOvalCenter.dy);
+    Paint brush = Paint()
+      ..color = MyTheme.darkBlue
+      ..style = PaintingStyle.fill;
+    Path leftOverlappingOval = Path()
+      ..addOval(
+          Rect.fromCircle(center: leftOverlappingOvalCenter, radius: radius));
+    Path rightOverlappingOval = Path()
+      ..addOval(
+          Rect.fromCircle(center: rightOverlappingOvalCenter, radius: radius));
+    Path rightOval = Path.combine(PathOperation.reverseDifference,
+        leftOverlappingOval, rightOverlappingOval);
+    CanvasHelper.draw3dWithShadow([rightOval], canvas, size,
+        brush..color = MyTheme.lightBlue, objectDepthAxis);
+    Path leftOval = Path()
+      ..addOval(Rect.fromCircle(
+          center: leftOverlappingOvalCenter.translate(-gap, 0),
+          radius: radius));
+    CanvasHelper.draw3dWithShadow([leftOval], canvas, size,
+        brush..color = MyTheme.darkBlue, objectDepthAxis);
   }
 
   @override

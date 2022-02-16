@@ -13,7 +13,7 @@ class CardBackgroundPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    double borderRadiusRatio = 0.1;
+    double borderRadiusRatio = 0.075;
     final brush = Paint()
       ..shader = ui.Gradient.linear(
         Offset(size.width, 0),
@@ -27,7 +27,7 @@ class CardBackgroundPainter extends CustomPainter {
               width: size.width,
               height: size.height),
           Radius.circular(size.height * borderRadiusRatio)));
-    CanvasHelper.makeAppear3D(
+    CanvasHelper.draw3DWithoutShadow(
       [rrectPath],
       canvas,
       size,

@@ -20,7 +20,7 @@ class LightBlueBarPainter extends CustomPainter {
               width: size.width,
               height: size.height),
           Radius.circular(size.height * 0.15)));
-    CanvasHelper.drawObjectWithShadow(
+    CanvasHelper.draw3dWithShadow(
         [barPath], canvas, size, brush, objectDepthAxis);
   }
 

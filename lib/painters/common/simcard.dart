@@ -43,7 +43,7 @@ class SimcardPainter extends CustomPainter {
     List<Path> upperAndBottomPaths = getUpperAndBottomPath();
     List<Path> leftAndRightPaths = getLeftAndRightPath();
     Path middlePath = getMiddlePath();
-    CanvasHelper.drawObjectWithShadow(
+    CanvasHelper.draw3dWithShadow(
         [...upperAndBottomPaths, ...leftAndRightPaths, middlePath],
         canvas,
         size,

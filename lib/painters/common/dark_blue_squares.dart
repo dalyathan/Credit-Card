@@ -27,8 +27,7 @@ class DarkBlueSquaresPainter extends CustomPainter {
             Radius.circular(size.height * 0.15))));
       center = center.translate(squareWidth + gap, 0);
     }
-    CanvasHelper.drawObjectWithShadow(
-        paths, canvas, size, brush, objectDepthAxis);
+    CanvasHelper.draw3dWithShadow(paths, canvas, size, brush, objectDepthAxis);
   }
 
   @override

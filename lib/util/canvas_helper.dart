@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' as material;
 
 class CanvasHelper {
-  static drawObjectWithShadow(List<Path> object, Canvas canvas, Size size,
+  static draw3dWithShadow(List<Path> object, Canvas canvas, Size size,
       Paint brush, Vector3 objectDepthAxis) {
     double factorIncerememnt = 0.05;
     double shadowElevation = size.width * 0.025;
@@ -25,11 +25,11 @@ class CanvasHelper {
         factor += factorIncerememnt;
       }
     }
-    makeAppear3D(object, canvas, size, brush, objectDepthAxis);
+    draw3DWithoutShadow(object, canvas, size, brush, objectDepthAxis);
   }
 
-  static makeAppear3D(List<Path> object, Canvas canvas, Size size, Paint brush,
-      Vector3 objectDepthAxis,
+  static draw3DWithoutShadow(List<Path> object, Canvas canvas, Size size,
+      Paint brush, Vector3 objectDepthAxis,
       {bool isShader = false}) {
     double maxDepth = size.width * 0.1;
     double startZIndex = 0;
