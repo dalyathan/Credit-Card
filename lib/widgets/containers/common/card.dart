@@ -4,8 +4,8 @@ import 'package:vector_math/vector_math_64.dart';
 import 'package:flutter/material.dart';
 
 import 'dark_blue_squares.dart';
+import 'master_card.dart';
 import 'simcard.dart';
-import 'dart:math';
 
 class CardContainer extends StatelessWidget {
   final double width;
@@ -23,6 +23,7 @@ class CardContainer extends StatelessWidget {
       objectDepthAxis = myTransformer.transform.transform3(objectDepthAxis);
     }
     return Stack(
+      clipBehavior: Clip.none,
       children: [
         CardBackground(
             width: width, height: height, objectDepthAxis: objectDepthAxis),
@@ -30,7 +31,7 @@ class CardContainer extends StatelessWidget {
             top: height * 0.175,
             left: width * 0.15,
             child: SimcardContainer(
-                size: width * 0.175, objectdepthAxis: objectDepthAxis)),
+                size: height * 0.3, objectdepthAxis: objectDepthAxis)),
         Positioned(
             top: height * 0.6,
             left: width * 0.1,
@@ -39,12 +40,17 @@ class CardContainer extends StatelessWidget {
                 height: barheight,
                 objectDepthAxis: objectDepthAxis)),
         Positioned(
-            top: height * 0.75,
+            bottom: height * 0.15,
             left: width * 0.1,
             child: LightBlueBarContainer(
                 height: barheight,
                 width: width * 0.4,
-                objectDepthAxis: objectDepthAxis))
+                objectDepthAxis: objectDepthAxis)),
+        Positioned(
+            bottom: height * 0.15,
+            right: width * 0.075,
+            child: MasterCardContainer(
+                height: height * 0.25, objectDepthAxis: objectDepthAxis))
       ],
     );
   }

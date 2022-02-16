@@ -14,10 +14,10 @@ class CreditCard3DContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     double cardWidthRatio = 0.7;
-    Matrix4 transformer = Matrix4.translationValues(0, 0, 100)
+    Matrix4 transformer = Matrix4.translationValues(0, 0, height * 0.05)
       ..rotateY(pi * 0.05)
       ..rotateZ(pi * 0.02);
-    transformer.rotateX(pi * 0.2);
+    transformer.rotateX(pi * 0.25);
     double creditCardIconTopOffset = 0.3;
     return Stack(
       clipBehavior: Clip.none,
@@ -28,7 +28,7 @@ class CreditCard3DContainer extends StatelessWidget {
         ),
         Positioned(
           top: creditCardIconTopOffset * height,
-          left: size.width * 0.15,
+          left: size.width * (1 - cardWidthRatio) * 0.5,
           child: Transform(
             transform: transformer,
             alignment: FractionalOffset.center,

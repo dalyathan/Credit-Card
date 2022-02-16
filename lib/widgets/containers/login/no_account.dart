@@ -18,7 +18,10 @@ class NoAccountContainer extends StatelessWidget {
           ),
           Text(
             "create account",
-            style: GoogleFonts.sora(color: MyTheme.darkBlue, fontSize: 20),
+            style: GoogleFonts.sora(
+                color: MyTheme.darkBlue,
+                fontSize: 17,
+                decoration: TextDecoration.underline),
           )
         ],
       ),

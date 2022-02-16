@@ -11,7 +11,7 @@ class LoginRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    double creditCard3dHeightRatio = 0.225;
+    double creditCard3dHeightRatio = 0.2;
     double titleheightRatio = 0.075;
     double largeSpacerRatio = 0.125;
     double formHeightRatio = 0.375;
@@ -23,7 +23,7 @@ class LoginRoute extends StatelessWidget {
             CreditCard3DContainer(
                 height: size.height * creditCard3dHeightRatio),
             SizedBox(
-              height: size.height * largeSpacerRatio * 1.25,
+              height: size.height * largeSpacerRatio,
             ),
             Center(
               child: LoginFormHead(
@@ -43,7 +43,7 @@ class LoginRoute extends StatelessWidget {
             ),
             Center(
               child: NoAccountContainer(
-                height: size.height * 0.2,
+                height: size.height * 0.0765,
               ),
             ),
           ],

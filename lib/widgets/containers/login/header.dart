@@ -1,4 +1,3 @@
-import 'package:credit_card/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -46,7 +45,7 @@ class LoginFormHead extends StatelessWidget {
                     child: Text(
                       "Credit Card",
                       style: GoogleFonts.sora(
-                          color: MyTheme.lightBlue,
+                          color: const Color.fromRGBO(73, 135, 185, 1),
                           fontSize: 25,
                           fontWeight: FontWeight.bold),
                     ),

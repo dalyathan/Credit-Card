@@ -44,7 +44,9 @@ class LoginFormContainer extends StatelessWidget {
                 child: Text(
                   "Forgot Password?",
                   style: GoogleFonts.sora(
-                      color: MyTheme.darkBlue, fontWeight: FontWeight.w600),
+                      decoration: TextDecoration.underline,
+                      color: MyTheme.darkBlue,
+                      fontWeight: FontWeight.w600),
                 ),
               ),
             ),

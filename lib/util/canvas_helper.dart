@@ -31,7 +31,7 @@ class CanvasHelper {
   static makeAppear3D(List<Path> object, Canvas canvas, Size size, Paint brush,
       Vector3 objectDepthAxis,
       {bool isShader = false}) {
-    double maxDepth = 20;
+    double maxDepth = size.width * 0.1;
     double startZIndex = 0;
     double zIndexIncrement = 1;
     late Matrix4 transformer;
@@ -40,7 +40,7 @@ class CanvasHelper {
     if (isShader) {
       darkenedColor = const Color.fromRGBO(29, 53, 78, 1);
     } else {
-      darkenedColor = Color.alphaBlend(material.Colors.black87, currentColor);
+      darkenedColor = Color.alphaBlend(material.Colors.black54, currentColor);
     }
     for (Path objectPath in object) {
       double layerZIndex = startZIndex;
