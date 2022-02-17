@@ -1,4 +1,5 @@
 import 'package:credit_card/widgets/containers/common/app_bar.dart';
+import 'package:credit_card/widgets/containers/common/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/containers/home/actions.dart';
@@ -58,6 +59,7 @@ class HomeRoute extends StatelessWidget {
           ),
         ),
       ),
+      //bottomNavigationBar: const CustomBottomNavBar(),
     );
   }
 }
