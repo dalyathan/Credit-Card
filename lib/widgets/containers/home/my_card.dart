@@ -18,7 +18,7 @@ class MyCardContainer extends StatelessWidget {
               child: Text(
             "My Card",
             style: GoogleFonts.sora(
-                color: Colors.black, fontWeight: FontWeight.bold),
+                color: Colors.black, fontWeight: FontWeight.w500),
           )),
         ),
         SizedBox(

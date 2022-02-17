@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../icons/exchange.dart';
 import 'titled_icon.dart';
 
 class ActionsContainer extends StatelessWidget {
@@ -13,18 +15,18 @@ class ActionsContainer extends StatelessWidget {
       children: [
         TitledIconContainer(
           height: height,
-          iconData: Icons.add_rounded,
+          icon: Icon(Icons.add_rounded),
           title: 'Top Up',
         ),
         TitledIconContainer(
           height: height,
-          iconData: Icons.add_rounded,
-          title: 'Top Up',
+          icon: ExchangeIcon(),
+          title: 'Transfer',
         ),
         TitledIconContainer(
           height: height,
-          iconData: Icons.add_rounded,
-          title: 'Top Up',
+          icon: Icon(Icons.history),
+          title: 'History',
         )
       ],
     );

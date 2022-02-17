@@ -4,15 +4,16 @@ import 'blue_gradient_background.dart';
 
 class CustomIcon extends StatelessWidget {
   final double size;
-  final IconData iconData;
-  const CustomIcon({Key? key, required this.size, required this.iconData})
+  final Widget icon;
+  const CustomIcon({Key? key, required this.size, required this.icon})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double iconWidthRatio = 0.6;
-    double iconBorderRadiusRatio = 0.2;
+    double iconWidthRatio = 0.8;
+    double iconBorderRadiusRatio = 0.5;
     return Stack(
+      alignment: Alignment.center,
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(size * iconBorderRadiusRatio),
@@ -21,15 +22,13 @@ class CustomIcon extends StatelessWidget {
             width: size,
           ),
         ),
-        Positioned(
-          left: size * (1 - iconWidthRatio) * 0.5,
-          top: size * (1 - iconWidthRatio) * 0.45,
-          child: Icon(
-            iconData,
-            color: Colors.white,
-            size: size * iconWidthRatio,
-          ),
-        )
+        IconTheme(
+          data: const IconThemeData(color: Colors.white),
+          child: SizedBox(
+              height: size * iconWidthRatio,
+              width: size * iconWidthRatio,
+              child: icon),
+        ),
       ],
     );
   }

@@ -38,7 +38,7 @@ class CustomAppBar extends StatelessWidget {
           ),
         ),
         CustomIcon(
-          iconData: FontAwesomeIcons.solidCommentDots,
+          icon: Icon(FontAwesomeIcons.solidCommentDots),
           size: height,
         )
       ],
