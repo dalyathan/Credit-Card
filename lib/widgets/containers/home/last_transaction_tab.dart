@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import '../../../models/transactions.dart';
 import '../../icons/in.dart';
@@ -26,7 +27,7 @@ class LastTransactionTabContainer extends StatelessWidget {
             child: SizedBox(
                 width: iconDiameter,
                 height: iconDiameter,
-                child: Image.network(transaction.imageUrl)),
+                child: CachedNetworkImage(imageUrl: transaction.imageUrl)),
           ),
           const Spacer(),
           Column(

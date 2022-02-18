@@ -12,13 +12,23 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
-
+  final PageStorageBucket _bucket = PageStorageBucket();
   static const List<Widget> _widgetOptions = <Widget>[
-    HomeRoute(),
-    HomeRoute(),
-    HomeRoute(),
-    OverviewRoute(),
-    OverviewRoute(),
+    HomeRoute(
+      key: PageStorageKey("HomeRoute0"),
+    ),
+    HomeRoute(
+      key: PageStorageKey("HomeRoute1"),
+    ),
+    HomeRoute(
+      key: PageStorageKey("HomeRoute2"),
+    ),
+    OverviewRoute(
+      key: PageStorageKey("OverviewRoute0"),
+    ),
+    OverviewRoute(
+      key: PageStorageKey("OverviewRoute1"),
+    ),
   ];
 
   void _onItemTapped(int index) {
@@ -32,7 +42,8 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
-        child: _widgetOptions[_selectedIndex],
+        child:
+            PageStorage(bucket: _bucket, child: _widgetOptions[_selectedIndex]),
       )),
       bottomNavigationBar: CustomBottomNavBar(
         onItemTapped: _onItemTapped,
