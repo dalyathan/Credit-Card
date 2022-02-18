@@ -16,7 +16,7 @@ class InIcon extends StatelessWidget {
       ),
       child: Align(
         alignment: Alignment(0, -0.75),
-        child: Icon(FontAwesomeIcons.caretDown,
+        child: Icon(FontAwesomeIcons.caretUp,
             size: height * 0.75, color: Colors.white),
       ),
     );

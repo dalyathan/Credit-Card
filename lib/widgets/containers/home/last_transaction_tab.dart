@@ -78,17 +78,19 @@ class LastTransactionTabContainer extends StatelessWidget {
                       color: transaction.amount > 0
                           ? const Color.fromRGBO(255, 109, 109, 1)
                           : const Color.fromRGBO(50, 209, 185, 1),
-                      fontSize: 12.5),
+                      fontSize: 12.5,
+                      fontWeight: FontWeight.bold),
                 )
               ]),
               const Spacer(
                 flex: 2,
               ),
               SizedBox(
-                height: height * 0.3,
+                height: height * 0.4,
                 child: FittedBox(
                     fit: BoxFit.fitHeight,
-                    child: Text('\$${transaction.amount.abs()}')),
+                    child: Text('\$${transaction.amount.abs()}',
+                        style: GoogleFonts.sora(fontWeight: FontWeight.bold))),
               ),
               const Spacer(),
             ],

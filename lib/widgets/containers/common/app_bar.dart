@@ -27,9 +27,9 @@ class CustomAppBar extends StatelessWidget {
           child: Image.asset("assets/images/me.jpg"),
         ),
         SizedBox(
-          width: width * 0.2,
+          height: height * 0.55,
           child: FittedBox(
-            fit: BoxFit.fitWidth,
+            fit: BoxFit.fitHeight,
             child: Text(
               title,
               style: GoogleFonts.sora(
@@ -38,7 +38,7 @@ class CustomAppBar extends StatelessWidget {
           ),
         ),
         CustomIcon(
-          icon: Icon(FontAwesomeIcons.solidCommentDots),
+          icon: const Icon(FontAwesomeIcons.solidCommentDots),
           size: height,
         )
       ],

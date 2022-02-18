@@ -1,6 +1,7 @@
-import 'package:credit_card/routes/home.dart';
 import 'package:credit_card/theme.dart';
 import 'package:flutter/material.dart';
+
+import '../../../screen.dart';
 
 class LoginButton extends StatelessWidget {
   final double width;
@@ -41,7 +42,7 @@ class LoginButton extends StatelessWidget {
         ),
         onPressed: () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const HomeRoute()),
+          MaterialPageRoute(builder: (context) => const MainScreen()),
         ),
         child: const Text('Login'),
       ),

@@ -5,8 +5,9 @@ import '../../../theme.dart';
 class BlueGradientContainer extends StatelessWidget {
   final double width;
   final double height;
-  const BlueGradientContainer(
-      {Key? key, required this.width, required this.height})
+  Widget? content;
+  BlueGradientContainer(
+      {Key? key, required this.width, required this.height, this.content})
       : super(key: key);
 
   @override
@@ -15,6 +16,7 @@ class BlueGradientContainer extends StatelessWidget {
     return Container(
       width: width,
       height: height,
+      child: content,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topRight,

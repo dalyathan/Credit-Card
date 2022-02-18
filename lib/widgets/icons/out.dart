@@ -16,7 +16,7 @@ class OutIcon extends StatelessWidget {
       ),
       child: Align(
         alignment: Alignment(0, -0.75),
-        child: Icon(FontAwesomeIcons.caretUp,
+        child: Icon(FontAwesomeIcons.caretDown,
             size: height * 0.75, color: Colors.white),
       ),
     );

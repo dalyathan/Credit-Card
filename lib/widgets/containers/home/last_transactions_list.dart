@@ -5,7 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'last_transaction_tab.dart';
 
 class LastTransactionsListContainer extends StatelessWidget {
-  const LastTransactionsListContainer({Key? key}) : super(key: key);
+  final String title;
+  const LastTransactionsListContainer({Key? key, required this.title})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +17,12 @@ class LastTransactionsListContainer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
+        SizedBox(
           width: size.width * 0.5,
           child: FittedBox(
             fit: BoxFit.fitWidth,
             child: Text(
-              "Last transactions",
+              title,
               style: GoogleFonts.sora(fontWeight: FontWeight.bold),
             ),
           ),
@@ -41,13 +43,13 @@ class LastTransactionsListContainer extends StatelessWidget {
               "https://newafricanmagazine.com/wordpress/wp-content/uploads/2018/03/abiy-ahmed.jpg",
               "Abiy Ahmed",
               "Jun 17, 09:30 pm",
-              -246.00),
+              -676.00),
         ),
         space,
         LastTransactionTabContainer(
           height: tabheight,
           transaction: Transaction("https://yageru.com/images/artists/a242.jpg",
-              "Meseret Mebrate", "Jun 17, 09:30 pm", -246.00),
+              "Meseret Mebrate", "Jun 17, 09:30 pm", -896.00),
         )
       ],
     );
