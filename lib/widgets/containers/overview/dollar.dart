@@ -41,8 +41,8 @@ class DollarContainer extends StatelessWidget {
                 alignment: const Alignment(0.2, 0.0),
                 child: Stack(clipBehavior: Clip.none, children: [
                   Positioned(
-                    left: -dollarIconheight * 0.1,
-                    bottom: -dollarIconheight * 0.125,
+                    left: -dollarIconheight * 0.15,
+                    bottom: -dollarIconheight * 0.15,
                     child: SizedBox(
                       height: innerRingRadius,
                       child: FittedBox(
